@@ -5,7 +5,7 @@ import requests
 @app.route('/')
 def get_apod_index():
     apod_url = "https://api.nasa.gov/planetary/apod"
-    api_key = "x88B7uMxc8fATLIYJxMJ8euYK6vReeZIRZGuSfWK"
+    api_key = "API KEY HERE"
     params = {
         "api_key": api_key,
         "hd": True,
