@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Indie+Flower&family=Roboto&family=Signika&family=Sriracha&display=swap");
+body {
+  background-color: #101010;
+}
+.welcome-title {
+  font-family: "Audiowide", sans-serif;
+  color: white;
+  text-shadow: 0px 0px 2px black;
+  font-size: 5em;
+}
+.shadow-better {
+  box-shadow: 6px 6px 6px black;
+}
+#floatingTextarea2 {
+  height: 400px;
+}
+#planet-3d {
+  height: 600px;
+}
+#icon-small {
+  height: 40px;
+  width: 40px;
+}
+.nav-bar-icons {
+  height: 20px;
+  width: 20px;
+}
+.dark-blue-bg {
+  background-color: rgb(3,22,51);
+}
+#login-box {
+  position: absolute;
+  bottom: -800px;
+  width: 300px;
+  height: 500px;
+  animation: floatToCenter 2s forwards;
+}
+#login-box-2 {
+  position: absolute;
+  bottom: -800px;
+  width: 300px;
+  height: 600px;
+  animation: floatToCenter 2s forwards;
+}
+.bounceIn {
+  animation-duration: 2s;
+  animation-name: bounceIn;
+}
+
+@keyframes floatToCenter {
+  to {
+    bottom: 30%;
+    transform: translateY(30%);
+  }
+}
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  /* 60% {
+    transform: scale(.9);
+    opacity: 1;
+  } */
+  100% {
+    transform: scale(1);
+  }
+}
+
+#over {
+  position: absolute;
+  /* transform: translate(50%,-50%); */
+  text-align: center;
+  transform-origin: center center;
+  top: 35%;
+  /* left: 25%; */
+  z-index: 2;
+  pointer-events: none;
+}
+#over3 {
+  position: absolute;
+  top: 35%;
+  left: 30%;
+  z-index: 2;
+}
+#over2 {
+  font-size: 4em;
+  position: absolute;
+  top: 60%;
+  left: 48%;
+  z-index: 2;
+}
+.cookies-bar {
+  background-color: rgba(0, 0, 0, 0.8);
+  height: 80px;
+}
+
+.height {
+  height: 900px;
+}
+.height2 {
+  height: 1000px;
+}
+.planet-photos {
+  height: 300px;
+  width: 300px;
+}
+.space-image {
+  background-image: url(https://media.cnn.com/api/v1/images/stellar/prod/220915083533-01-saturn-062019.jpg?c=16x9&q=h_720,w_1280,c_fill);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.space-image2 {
+  background-image: url(https://www.sciencefriday.com/wp-content/uploads/2022/04/Neptune.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-card {
+  background-color: transparent;
+  height: 200px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+#span-name {
+  color: dodgerblue;
+  font-weight: bold;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  /* background-image: url(https://i.ytimg.com/vi/JquobII5VjA/maxresdefault.jpg); */
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: rgb(3,22,51);
+  color: white;
+  transform: rotateY(180deg);
+}

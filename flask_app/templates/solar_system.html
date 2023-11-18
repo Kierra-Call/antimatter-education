@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="F:\CodingDojo\Python\project\flask_app\assets\images\web-icon\icons8-planet-pastel-glyph-16.png"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static',filename='css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="F:\CodingDojo\Python\project\flask_app\static\css\styles.css"
+    />
+    <title>The Solar System</title>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg sticky-top bg-dark"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid">
+        <img
+          src="{{ url_for('static', filename='/assets/images/antimatter.png') }}"
+          alt="antimatter logo"
+          height="70"
+          width="100"
+        />
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/articles/all">Articles</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle active"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Solar System
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/mercury.png') }}"
+                      alt="mercury icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/mercury">Mercury</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/venus.png') }}"
+                      alt="venus icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/venus">Venus</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/earth.png') }}"
+                      alt="earth icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/earth">Earth</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/mars.png') }}"
+                      alt="mars icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/mars">Mars</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/jupiter.png') }}"
+                      alt="jupiter icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/jupiter">Jupiter</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/saturn.png') }}"
+                      alt="saturn icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/saturn">Saturn</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/uranus.png') }}"
+                      alt="uranus icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/uranus">Uranus</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/neptune.png') }}"
+                      alt="neptune icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/neptune">Neptune</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/pluto.png') }}"
+                      alt="pluto icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/pluto">Pluto</a>
+                  </div>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="/the-solar-system"
+                    >The Solar System</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item"></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery">Gallery</a>
+            </li>
+          </ul>
+          {% if session.get('first_name') != None %}
+          <h3 class="text-white me-3">Welcome {{session['first_name']}}!</h3>
+          {% endif %}
+          <form action="/gallery/search" method="POST" class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              name="search-gallery"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+          {% if session.get('user_id') == None %}
+          <a class="btn btn-primary ms-2" href="/login/page">Login</a>
+          {% else %}
+          <a class="btn btn-danger ms-2" href="/logout">Log Out</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <!-- CONTENT  -->
+
+    <section>
+      <div class="sketchfab-embed-wrapper">
+        <iframe
+          title="Need some space?"
+          class="w-100 border border-dark"
+          frameborder="0"
+          allowfullscreen
+          mozallowfullscreen="true"
+          webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          xr-spatial-tracking
+          execution-while-out-of-viewport
+          execution-while-not-rendered
+          web-share
+          height="650"
+          src="https://sketchfab.com/models/b7c69a6b655b47c99f871d5ec5aee854/embed?autospin=1&autostart=1"
+        >
+        </iframe>
+        <h1 id="over" class="welcome-title text-center w-100">
+          The Solar System
+        </h1>
+        <form id="over2" action="#the-solar-system">
+          <button class="btn btn-danger shadow-lg">Learn More</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="d-flex justify-content-between">
+        <div
+          class="w-100 bg-dark border border-dark rounded text-white p-3 m-3"
+        >
+          <h1 id="the-solar-system">The Solar System</h1>
+          <p>
+            Our solar system is made up of 8 planets and countless drawf
+            planets, asteroids, and comets with the center being a large star,
+            the Sun. Our solar system contains planets (from the sun outward),
+            <a href="#">Mercury</a>, <a href="#">Venus</a>,our very own
+            <a href="#">Earth</a>
+            , <a href="#">Mars</a>, <a href="#">Jupiter</a>,
+            <a href="#">Saturn</a>, <a href="#">Uranus</a>,
+            <a href="#">Neptune</a>, and dwarf planet <a href="#">Pluto</a>.
+          </p>
+          <img
+            class="w-100"
+            src="https://blogs-images.forbes.com/startswithabang/files/2017/06/orbits.gif?"
+            alt="orbit"
+          />
+          <div
+          class="d-flex align-items-center justify-content-center p-2 mb-2 mt-2 dark-blue-bg text-primary border-start border-end border-primary border-4"
+        >
+          <img
+            class="m-2"
+            id="icon-small"
+            src="https://img.icons8.com/color/48/light-on--v1.png"
+            alt="lightbulb"
+          />
+          <p>
+            <b>Tip:</b> Above is a gif that circles through the different positioning of the planets based on where they are at that given date and time (as seen on the bottom left).
+          </p>
+        </div>
+          <p>
+            <a href="https://www.nasa.gov/">Model made by NASA.</a>
+          </p>
+        </div>
+        <div>
+          <div
+            class="card bg-dark border-dark text-white m-3"
+            style="width: 18rem"
+          >
+            <img
+              src="https://imageio.forbes.com/blogs-images/startswithabang/files/2018/08/motion_through_universe.jpg?height=425&width=711&fit=bounds"
+              class="card-img-top"
+              alt="orbit"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Orbit In Motion</h5>
+              <p class="card-text">
+                This model shows our solar systems orbit as well as our motion
+                through space. Not only do we revolve around the sun, but the
+                solar system itself is traveling through the Galaxy.
+                <a
+                  href="https://www.forbes.com/sites/startswithabang/2018/08/30/our-motion-through-space-isnt-a-vortex-but-something-far-more-interesting/?sh=460c3db77ec2"
+                  >Model made by Forbes.</a
+                >.
+              </p>
+              <a href="/articles/all" class="btn btn-primary">Visit Articles</a>
+            </div>
+          </div>
+          <div
+            class="card bg-dark border-dark text-white m-3"
+            style="width: 18rem"
+          >
+            <img
+              src="https://d2pn8kiwq2w21t.cloudfront.net/images/jpegPIA11518.width-1024.jpg"
+              class="card-img-top"
+              alt="orbit"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Shadow of Mimas</h5>
+              <p class="card-text">
+                This image depicts Saturn's rings with the shadow of one of it's
+                many moons, Mimas captured from the Cassini spacecraft.
+                <a
+                  href="https://www.jpl.nasa.gov/images/pia11518-from-rings-to-planet"
+                  >Image owned by NASA.</a
+                >.
+              </p>
+              <a href="/articles/all" class="btn btn-primary">Visit Articles</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/config.js') }}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <footer>
+      <div class="text-white container d-flex justify-content-around">
+        <p>&copy; 2023 Antimatter. All rights reserved.</p>
+        <p>Icons by <a href="https://icons8.com/icons">icons8</a>.</p>
+      </div>
+    </footer>
+  </body>
+</html>

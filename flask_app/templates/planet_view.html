@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="F:\CodingDojo\Python\project\flask_app\assets\images\web-icon\icons8-planet-pastel-glyph-16.png"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='/css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="F:\CodingDojo\Python\project\flask_app\static\css\styles.css"
+    />
+    <title>{{planet.name}}</title>
+  </head>
+  <body>
+    <!-- NAV BAR  -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top bg-dark"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid">
+        <img
+          src="{{ url_for('static', filename='/assets/images/antimatter.png') }}"
+          alt="antimatter logo"
+          height="70"
+          width="100"
+        />
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/articles/all">Articles</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle active"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Solar System
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/mercury.png') }}"
+                      alt="mercury icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/mercury">Mercury</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/venus.png') }}"
+                      alt="venus icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/venus">Venus</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/earth.png') }}"
+                      alt="earth icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/earth">Earth</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/mars.png') }}"
+                      alt="mars icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/mars">Mars</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/jupiter.png') }}"
+                      alt="jupiter icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/jupiter">Jupiter</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/saturn.png') }}"
+                      alt="saturn icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/saturn">Saturn</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/uranus.png') }}"
+                      alt="uranus icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/uranus">Uranus</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/neptune.png') }}"
+                      alt="neptune icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/neptune">Neptune</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/pluto.png') }}"
+                      alt="pluto icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/pluto">Pluto</a>
+                  </div>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="/the-solar-system"
+                    >The Solar System</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item"></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery">Gallery</a>
+            </li>
+          </ul>
+          {% if session.get('first_name') != None %}
+          <h3 class="text-white me-3">Welcome {{session['first_name']}}!</h3>
+          {% endif %}
+          <form
+            action="/gallery/search"
+            method="POST"
+            class="d-flex"
+            role="search"
+          >
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              name="search-gallery"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+          {% if session.get('user_id') == None %}
+          <a class="btn btn-primary ms-2" href="/login/page">Login</a>
+          {% else %}
+          <a class="btn btn-danger ms-2" href="/logout">Log Out</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="bg-dark text-white rounded p-3 m-3 border border-dark">
+        <h1>{{planet.name}}</h1>
+        <hr />
+
+        <div class="sketchfab-embed-wrapper">
+          <iframe
+            title="{{planet.name}}"
+            frameborder="0"
+            allowfullscreen
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            xr-spatial-tracking
+            execution-while-out-of-viewport
+            execution-while-not-rendered
+            web-share
+            src="{{planet.planet_link}}"
+            class="rounded w-100"
+            id="planet-3d"
+          >
+          </iframe>
+        </div>
+        <div
+          class="d-flex align-items-center justify-content-center p-2 mb-2 dark-blue-bg text-primary border-start border-end border-primary border-4"
+        >
+          <img
+            class="m-2"
+            id="icon-small"
+            src="https://img.icons8.com/color/48/light-on--v1.png"
+            alt="lightbulb"
+          />
+          <p>
+            <b>Tip:</b> Above is a 3D model of {{planet.name}}. You can use your
+            mouse to drag the model around. You can also use your scroll wheel
+            while inside of the 3D model to zoom in and out.
+          </p>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div
+          class="bg-dark text-white rounded p-3 m-3 border border-dark w-75 h-100"
+        >
+          <h2>About {{planet.name}}:</h2>
+          <p>{{planet.description}}</p>
+          <a target="_blank" href="https://science.nasa.gov/{{planet.name}}/"
+            >Information by NASA.</a
+          >
+          <div class="d-flex">
+            <img
+              src="{{planet.image_3}}"
+              alt="{{planet.name}}"
+              class="w-100 m-1 rounded"
+              height="auto"
+            />
+          </div>
+        </div>
+        <div>
+          <div
+            class="card bg-dark m-3 border border-dark text-white"
+            style="width: 18rem"
+          >
+            <img
+              src="{{planet.image_1}}"
+              class="card-img-top"
+              alt="{{planet.name}}"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Atmosphere</h5>
+              <p class="card-text">
+                {{planet.name}} has a mean temperature of {{planet.mean_temp}}
+              </p>
+            </div>
+          </div>
+          <div
+            class="card bg-dark m-3 border border-dark text-white"
+            style="width: 18rem"
+          >
+            <img
+              src="{{planet.image_2}}"
+              class="card-img-top"
+              alt="{{planet.name}}"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Size</h5>
+              <p class="card-text">{{planet.name}} is about {{planet.size}}.</p>
+            </div>
+          </div>
+          <div
+            class="card bg-dark m-3 border border-dark text-white"
+            style="width: 18rem"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/1200px-FullMoon2010.jpg"
+              class="card-img-top"
+              alt="moon"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Moons</h5>
+              <p class="card-text">
+                {{planet.name}} has {{planet.moons}} known moon(s).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex w-100 h-100 justify-content-between">
+        <div class="flip-card text-white rounded w-100 m-1">
+          <div class="flip-card-inner bg-dark rounded">
+            <div
+            class="flip-card-front text-white rounded p-3 "
+            >
+            <h1>
+              <span id="span-name">Hover</span> for a Fun Fact about
+              {{planet.name}}
+            </h1>
+            </div>
+            <div
+              class="flip-card-back text-white rounded p-3 "
+            >
+              <h1>{{planet.name}}</h1>
+              <p>{{planet.fun_fact_1}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card text-white rounded w-100 m-1">
+          <div class="flip-card-inner rounded bg-dark">
+            <div
+              class="flip-card-front text-white rounded p-3 "
+            >
+              <h1>
+                <span id="span-name">Hover</span> for a Fun Fact about
+                {{planet.name}}
+              </h1>
+            </div>
+            <div
+              class="flip-card-back text-white rounded p-3"
+            >
+            <h1>{{planet.name}}</h1>
+            <p>{{planet.fun_fact_2}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card text-white rounded w-100 m-1">
+          <div class="flip-card-inner rounded bg-dark">
+            <div
+            class="flip-card-front text-white rounded p-3 "
+            >
+            <h1>
+              <span id="span-name">Hover</span> for a Fun Fact about
+              {{planet.name}}
+            </h1>
+            </div>
+            <div
+              class="flip-card-back text-white rounded p-3"
+            >
+            <h1>{{planet.name}}</h1>
+            <p>{{planet.fun_fact_3}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <footer>
+      <div class="text-white container d-flex justify-content-around">
+        <p>&copy; 2023 Antimatter. All rights reserved.</p>
+        <p>Icons by <a href="https://icons8.com/icons">icons8</a>.</p>
+      </div>
+    </footer>
+  </body>
+</html>

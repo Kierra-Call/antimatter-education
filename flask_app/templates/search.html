@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="F:\CodingDojo\Python\project\flask_app\assets\images\web-icon\icons8-planet-pastel-glyph-16.png"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='/css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="F:\CodingDojo\Python\project\flask_app\static\css\styles.css"
+    />
+    <title>{{session['search_keyword']}}</title>
+  </head>
+  <body>
+    <!-- NAV BAR  -->
+    <nav
+      class="navbar navbar-expand-lg sticky-top bg-dark"
+      data-bs-theme="dark"
+    >
+      <div class="container-fluid">
+        <img
+          src="{{ url_for('static', filename='/assets/images/antimatter.png') }}"
+          alt="antimatter logo"
+          height="70"
+          width="100"
+        />
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/articles/all">Articles</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Solar System
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/mercury.png') }}"
+                      alt="mercury icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/mercury">Mercury</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/venus.png') }}"
+                      alt="venus icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/venus">Venus</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/earth.png') }}"
+                      alt="earth icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/earth">Earth</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/mars.png') }}"
+                      alt="mars icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/mars">Mars</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/jupiter.png') }}"
+                      alt="jupiter icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/jupiter">Jupiter</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/saturn.png') }}"
+                      alt="saturn icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/saturn">Saturn</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/uranus.png') }}"
+                      alt="uranus icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/uranus">Uranus</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/neptune.png') }}"
+                      alt="neptune icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/neptune">Neptune</a>
+                  </div>
+                </li>
+                <li>
+                  <div class="d-flex align-items-center ms-2">
+                    <img
+                      src="{{ url_for('static', filename='/assets/images/pluto.png') }}"
+                      alt="pluto icon"
+                      class="nav-bar-icons"
+                    />
+                    <a class="dropdown-item" href="/planet/pluto">Pluto</a>
+                  </div>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="/the-solar-system"
+                    >The Solar System</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item"></li>
+            <li class="nav-item">
+              <a class="nav-link" href="/gallery">Gallery</a>
+            </li>
+          </ul>
+          {% if session.get('first_name') != None %}
+          <h3 class="text-white me-3">Welcome {{session['first_name']}}!</h3>
+          {% endif %}
+          <form action="/gallery/search" method="POST" class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              name="search-gallery"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+          {% if session.get('user_id') == None %}
+          <a class="btn btn-primary ms-2" href="/login/page">Login</a>
+          {% else %}
+          <a class="btn btn-danger ms-2" href="/logout">Log Out</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="bg-dark text-white rounded border border-dark w-100 m-3 p-3">
+        <h1>{{search_number}} results for: {{session['search_keyword']}}</h1>
+        <hr />
+        {% for article in results %}
+        <div class="m-3 bg-secondary text-black rounded p-3 shadow-lg">
+          <h2>{{article.name}}</h2>
+          <hr />
+          <div class="d-flex justify-content-between p-1">
+            <p>{{article.header}}</p>
+            <a class="btn btn-primary shadow" href="#">View</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <script src="{{ url_for('static',filename='js/script.js') }}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
